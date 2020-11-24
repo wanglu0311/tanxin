@@ -1,0 +1,26 @@
+#服务端口
+server:
+  port: 31001
+#服务名称
+spring:
+  application:
+    name: tx-service-manage-cms-client
+  data:
+    mongodb:
+#      使用springboot提供的默认配置
+#      uri:  mongodb:// root:123@localhost:27017
+      database: xc_cms
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+  freemarker:
+    cache: false
+    settings:
+      template_update_delay: 0
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848

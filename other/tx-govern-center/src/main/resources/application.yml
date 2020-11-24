@@ -1,0 +1,10 @@
+server:
+  port: 50101
+
+spring:
+  application:
+    name: tx-govern-center
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848

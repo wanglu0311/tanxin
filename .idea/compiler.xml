@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="test-fastdfs" />
+        <module name="test-rabbitmq-consumer" />
+        <module name="test-rabbitmq-producer" />
+        <module name="testfreemarker" />
+        <module name="tx-framework-common" />
+        <module name="tx-framework-model" />
+        <module name="tx-framework-utils" />
+        <module name="tx-govern-center" />
+        <module name="tx-service-api" />
+        <module name="tx-service-base-filesystem" />
+        <module name="tx-service-manage-cms" />
+        <module name="tx-service-manage-cms-client" />
+        <module name="tx-service-manage-course" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="aaa" target="1.5" />
+      <module name="tx-framework-common (1) (com.tanxin)" target="1.8" />
+      <module name="tx-framework-model (1) (com.tanxin)" target="1.8" />
+      <module name="tx-framework-parent" target="1.8" />
+      <module name="tx-framework-utils (1) (com.tanxin)" target="1.8" />
+      <module name="tx-service-api (1) (com.tanxin)" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="test-fastdfs" options="-parameters" />
+      <module name="test-rabbitmq-consumer" options="-parameters" />
+      <module name="test-rabbitmq-producer" options="-parameters" />
+      <module name="testfreemarker" options="-parameters" />
+      <module name="tx-framework-common" options="-parameters" />
+      <module name="tx-framework-common (1) (com.tanxin)" options="-parameters" />
+      <module name="tx-framework-model" options="-parameters" />
+      <module name="tx-framework-model (1) (com.tanxin)" options="-parameters" />
+      <module name="tx-framework-utils" options="-parameters" />
+      <module name="tx-framework-utils (1) (com.tanxin)" options="-parameters" />
+      <module name="tx-govern-center" options="-parameters" />
+      <module name="tx-service-api" options="-parameters" />
+      <module name="tx-service-api (1) (com.tanxin)" options="-parameters" />
+      <module name="tx-service-base-filesystem" options="-parameters" />
+      <module name="tx-service-manage-cms" options="-parameters" />
+      <module name="tx-service-manage-cms-client" options="-parameters" />
+      <module name="tx-service-manage-course" options="-parameters" />
+      <module name="tx_project" options="" />
+    </option>
+  </component>
+</project>

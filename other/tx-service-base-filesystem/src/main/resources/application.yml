@@ -1,0 +1,26 @@
+#服务端口
+server:
+  port: 22100
+#服务名称
+spring:
+  application:
+    name: tx-service-base-filesystem
+  data:
+    mongodb:
+      # 使用springboot提供的默认配置
+      # uri:  mongodb:// root:123@localhost:27017
+      database: xc_fs
+ # springMVC上传文件配置
+  servlet:
+    multipart:
+      enabled: true # 默认支持文件上传
+      file-size-threshold: 0 # 支持文件写入磁盘
+      location: #上传文件的临时目录
+      max-file-size:  10MB # 最大支持文件大小
+      max-request-size: 30MB  # 最大支持请求大小
+tanxin:
+  fastdfs:
+    charset: UTF-8
+    connect_timeout_in_seconds: 5
+    network_timeout_in_seconds: 30
+    tracker_servers: 192.168.152.133:22122

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" addBOMForNewFiles="with NO BOM">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/other/test-fastdfs" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/other/test-rabbitmq-consumer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/other/test-rabbitmq-producer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/other/testfreemarker" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/other/tx-framework-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/other/tx-framework-model" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/other/tx-framework-utils" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/other/tx-govern-center" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/other/tx-service-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/other/tx-service-base-filesystem" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/other/tx-service-manage-cms" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/other/tx-service-manage-cms-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/other/tx-service-manage-course" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/txgoverncenter" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../txkj/tx-framework-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../txkj/tx-framework-model" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../txkj/tx-framework-parent" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../txkj/tx-framework-utils" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../txkj/tx-service-api" charset="UTF-8" />
+  </component>
+</project>

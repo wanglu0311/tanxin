@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tanxin.manage_course.dao.CourseMapper">
+    <select id="findCourseBaseById" parameterType="java.lang.String"
+            resultType="com.tanxin.framework.domain.course.CourseBase">
+        select * from course_base where id = #{id}
+    </select>
+
+
+
+    <select id="findCourseListPage" resultType="com.tanxin.framework.domain.course.ext.CourseInfo">
+         SELECT
+            b.*, (
+                SELECT
+                    pic
+                FROM
+                    course_pic p
+                WHERE
+                    p.courseid = b.id
+            ) pic
+        FROM
+            course_base b
+    </select>
+
+    <select id="findCourse" resultType="com.tanxin.framework.domain.course.ext.CourseInfo">
+        SELECT
+            b.*, (
+                SELECT
+                    pic
+                FROM
+                    course_pic p
+                WHERE
+                    p.courseid = b.id
+            ) pic
+        FROM
+            course_base b
+        WHERE b.id = #{courseId}
+    </select>
+
+
+
+
+</mapper>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/other/tx-framework-common/pom.xml" />
+        <option value="$PROJECT_DIR$/other/tx-framework-model/pom.xml" />
+        <option value="$PROJECT_DIR$/other/tx-framework-utils/pom.xml" />
+        <option value="$PROJECT_DIR$/other/tx-service-api/pom.xml" />
+        <option value="$PROJECT_DIR$/other/tx-service-manage-cms/pom.xml" />
+        <option value="$PROJECT_DIR$/other/testfreemarker/pom.xml" />
+        <option value="$PROJECT_DIR$/other/test-rabbitmq-producer/pom.xml" />
+        <option value="$PROJECT_DIR$/other/test-rabbitmq-consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/other/tx-service-manage-cms-client/pom.xml" />
+        <option value="$PROJECT_DIR$/other/tx-service-manage-course/pom.xml" />
+        <option value="$PROJECT_DIR$/other/test-fastdfs/pom.xml" />
+        <option value="$PROJECT_DIR$/other/tx-service-base-filesystem/pom.xml" />
+        <option value="$PROJECT_DIR$/other/tx-govern-center/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+          <State>
+            <id>Android</id>
+          </State>
+          <State>
+            <id>CorrectnessLintAndroid</id>
+          </State>
+          <State>
+            <id>Data flowJava</id>
+          </State>
+          <State>
+            <id>Data flowJavaScript</id>
+          </State>
+          <State>
+            <id>Java</id>
+          </State>
+          <State>
+            <id>JavaScript</id>
+          </State>
+          <State>
+            <id>LintAndroid</id>
+          </State>
+          <State>
+            <id>PerformanceLintAndroid</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Android</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

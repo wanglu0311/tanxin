@@ -1,0 +1,21 @@
+#服务端口
+server:
+  port: 31000
+#服务名称
+spring:
+  application:
+    name: tx-service-manage-cms
+  data:
+    mongodb:
+#      使用springboot提供的默认配置
+#      uri:  mongodb:// root:123@localhost:27017
+      database: xc_cms
+  freemarker:
+    cache: false
+    settings:
+      template_update_delay: 0
+tanxin:
+  mq:
+    # cms客户端监控的队列名称 不同客户端监控的队列不能重复
+    queue: queue_cms_postpage_03
+    routingKey: 5b30b052f58b4411fc6cb1cf #5a751fab6abb5044e0d19ea1 # 门户站点id
