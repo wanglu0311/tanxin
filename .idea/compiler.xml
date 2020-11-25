@@ -20,6 +20,7 @@
         <module name="tx-service-manage-cms" />
         <module name="tx-service-manage-cms-client" />
         <module name="tx-service-manage-course" />
+        <module name="tx-service-search" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -50,6 +51,7 @@
       <module name="tx-service-manage-cms" options="-parameters" />
       <module name="tx-service-manage-cms-client" options="-parameters" />
       <module name="tx-service-manage-course" options="-parameters" />
+      <module name="tx-service-search" options="-parameters" />
       <module name="tx_project" options="" />
     </option>
   </component>
