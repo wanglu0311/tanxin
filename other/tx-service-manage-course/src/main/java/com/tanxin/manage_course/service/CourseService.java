@@ -1,14 +1,12 @@
 package com.tanxin.manage_course.service;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.tanxin.framework.domain.cms.CmsPage;
 import com.tanxin.framework.domain.cms.response.CmsPageResult;
 import com.tanxin.framework.domain.cms.response.CmsPostPageResult;
-import com.tanxin.framework.domain.course.CourseBase;
-import com.tanxin.framework.domain.course.CourseMarket;
-import com.tanxin.framework.domain.course.CoursePic;
-import com.tanxin.framework.domain.course.Teachplan;
+import com.tanxin.framework.domain.course.*;
 import com.tanxin.framework.domain.course.ext.CourseInfo;
 import com.tanxin.framework.domain.course.ext.CourseView;
 import com.tanxin.framework.domain.course.ext.TeachplanNode;
@@ -29,6 +27,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -63,6 +62,9 @@ public class CourseService {
     @Autowired
     private CmsPageClient cmsPageClient;
 
+    @Autowired
+    private CousrsePubRepository cousrsePubRepository;
+
     @Value("${course-publish.dataUrlPre}")
     private String publish_dataUrlPre;
 
@@ -81,7 +83,7 @@ public class CourseService {
     @Value("${course-publish.previewUrl}")
     private String previewUrl;
 
-    // 课程信息查询
+    //TODO 课程信息查询
     public QueryResponseResult findCourseInfo(Integer page, Integer size, CourseListRequest courseListRequest) {
 
         // 开始分页
@@ -99,12 +101,12 @@ public class CourseService {
         return new QueryResponseResult(CommonCode.SUCCESS, result);
     }
 
-    // 课程计划查询
+    //TODO 课程计划查询
     public TeachplanNode findTeachplanList(String courseId) {
         return teachPlanMapper.selectList(courseId);
     }
 
-    // 添加课程计划
+    //TODO 添加课程计划
     public ResponseResult addTeachplan(Teachplan teachplan) {
 
         if (teachplan == null || StringUtils.isEmpty(teachplan.getCourseid()) || StringUtils.isEmpty(teachplan.getPname())) {
@@ -160,7 +162,7 @@ public class CourseService {
     }
 
 
-    // 添加课程
+    //TODO 添加课程
     public ResponseResult addCourse(CourseBase courseBase) {
 
         CourseBase save = courseBaseRepository.save(courseBase);
@@ -168,7 +170,7 @@ public class CourseService {
         return ResponseResult.SUCCESS();
     }
 
-    // 根据课程id查询
+    //TODO 根据课程id查询
     public CourseInfo findCourse(String courseId) {
 
         // 判断参数是否存在
@@ -200,7 +202,7 @@ public class CourseService {
         return ResponseResult.FAIL();
     }
 
-    // 根据课程id查询课程营销信息
+    //TODO 根据课程id查询课程营销信息
     public CourseMarket getCourseMarketById(String courseId) {
 
         // 判断课程id是否为空
@@ -218,7 +220,7 @@ public class CourseService {
     }
 
 
-    // 根据课程id修改课程营销信息
+    //TODO 根据课程id修改课程营销信息
     public ResponseResult updateCourseMarket(String courseId, CourseMarket courseMarket) {
 
         // 是否存在
@@ -251,7 +253,7 @@ public class CourseService {
 
 
 
-    // 向课程管理添加课程相关的信息
+    //TODO 向课程管理添加课程相关的信息
     public ResponseResult addCoursePic(String courseId, String pic) {
 
         // 判断是否为空
@@ -280,7 +282,7 @@ public class CourseService {
         return new ResponseResult(CommonCode.SUCCESS);
     }
 
-    // 查询课程图片
+    //TODO 查询课程图片
     public CoursePic findCoursePic(String courseId) {
 
         // 判断id是否为空
@@ -295,7 +297,7 @@ public class CourseService {
 
     }
 
-    // 删除课程图片
+    //TODO 删除课程图片
     public ResponseResult deleteCouresPic(String courseId) {
 
         // 判断id是否为空
@@ -313,7 +315,7 @@ public class CourseService {
     }
 
 
-    // 查询课程视图,包括基本信息 图片 营销信息 课程计划
+    //TODO 查询课程视图,包括基本信息 图片 营销信息 课程计划
     public CourseView getCourseView(String id) {
 
         CourseView courseView = new CourseView();
@@ -338,7 +340,7 @@ public class CourseService {
 
     }
 
-    // 课程预览
+    //TODO 课程预览
     public CoursePublishResult preview(String id) {
 
         // 请求cms添加页面
@@ -362,7 +364,7 @@ public class CourseService {
     }
 
 
-    // 最新课程
+    //TODO 最新课程
     public String latest() {
 
         // 得到最新课程营销id
@@ -380,7 +382,7 @@ public class CourseService {
         return "最新课程名称:" + courseBase.getName() + "\t价格仅有" + courseMarket.getPrice();
     }
 
-    // 发布课程
+    //TODO 发布课程
     public CoursePublishResult publish(String id) {
 
         // 根据id查询信息
@@ -399,6 +401,11 @@ public class CourseService {
         }
 
         // 保存课程索引信息
+        // 创建 CoursePub对象
+        CoursePub coursePub = createCoursePub(id);
+
+        // 保存到数据库
+        saveCoursePub(id, coursePub);
 
         // 缓存课程的信息
 
@@ -408,7 +415,65 @@ public class CourseService {
         return new CoursePublishResult(CommonCode.SUCCESS,pageUrl);
     }
 
-    // 更改课程状态 为已发布 202002
+    //TODO 将coursePub保存到数据库
+    private CoursePub saveCoursePub(String id,CoursePub coursePub) {
+
+        CoursePub coursePubNew = null;
+
+        // 根据id查询coursePub
+        Optional<CoursePub> pubOptional = cousrsePubRepository.findById(id);
+        coursePubNew = pubOptional.orElse(new CoursePub());
+
+        // 将coursePub对象中的信息保存到coursepub中
+        BeanUtils.copyProperties(coursePub,coursePubNew);
+        coursePubNew.setId(id);
+
+        // 发布时间
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        String date = simpleDateFormat.format(new Date());
+        coursePubNew.setPubTime(date);
+        cousrsePubRepository.save(coursePubNew);
+        return coursePubNew;
+    }
+
+    //TODO 创建CoursePub对象
+    private CoursePub createCoursePub(String id) {
+
+        CoursePub coursePub = new CoursePub();
+        // 根据课程 id 查询course_base
+        Optional<CourseBase> optionalBase = courseBaseRepository.findById(id);
+        if (optionalBase.isPresent()) {
+            CourseBase courseBase = optionalBase.get();
+            // 属性拷贝到cursePub中
+            BeanUtils.copyProperties(courseBase, coursePub);
+        }
+
+
+        // 根据课程 id 查询course_pic
+        Optional<CoursePic> picOptional = coursePicRepository.findById(id);
+        if (picOptional.isPresent()) {
+            CoursePic coursePic = picOptional.get();
+            // 属性拷贝到cursePub中
+            BeanUtils.copyProperties(coursePic, coursePub);
+        }
+
+        // 根据课程 id 查询营销信息
+        Optional<CourseMarket> marketOptional = courseMarketRepository.findById(id);
+        if (marketOptional.isPresent()) {
+            CourseMarket courseMarket = marketOptional.get();
+            // 属性拷贝到cursePub中
+            BeanUtils.copyProperties(courseMarket, coursePub);
+        }
+
+        // 根据课程 id 查询课程计划信息
+        TeachplanNode teachplanNode = teachPlanMapper.selectList(id);
+        String jsonString = JSON.toJSONString(teachplanNode);
+        coursePub.setTeachplan(jsonString);
+
+        return coursePub;
+    }
+
+    //TODO 更改课程状态 为已发布 202002
     private CourseBase saveCoursePubStatus(String courseId) {
 
         CourseBase courseById = this.findCourseById(courseId);
@@ -417,6 +482,7 @@ public class CourseService {
         return courseById;
     }
 
+    //TODO 得到课程计划的根
     private String getTeachplanRoot(String courseid) {
 
         Optional<CourseBase> optional = courseBaseRepository.findById(courseid);
@@ -449,7 +515,7 @@ public class CourseService {
         return teachplanList.get(0).getId();
     }
 
-    // 根据id查询课程信息并转成cmsPage
+    //TODO 根据id查询课程信息并转成cmsPage
     private CmsPage baseToCmsPage(String id) {
         CourseBase courseById = this.findCourseById(id);
         CmsPage cmsPage = new CmsPage();
@@ -464,7 +530,7 @@ public class CourseService {
     }
 
 
-    // 根据id查询课程基本信息
+    //TODO 根据id查询课程基本信息
     private CourseBase findCourseById(String courseId) {
 
         Optional<CourseBase> optional = courseBaseRepository.findById(courseId);

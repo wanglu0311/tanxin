@@ -18,8 +18,8 @@ public interface CmsPageClient {
 
     // 添加页面,用于课程预览
     @PostMapping("/cms/page/save")
-    public CmsPageResult saveCmsPage(@RequestBody CmsPage cmsPage);
+    CmsPageResult saveCmsPage(@RequestBody CmsPage cmsPage);
 
     @PostMapping("/cms/page/postPageQuick")
-    public CmsPostPageResult postPageQuick(CmsPage cmsPage) ;
+    CmsPostPageResult postPageQuick(CmsPage cmsPage) ;
 }

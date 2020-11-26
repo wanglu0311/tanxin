@@ -1,5 +1,6 @@
 package com.tanxin.manage_course;
 
+import feign.codec.Decoder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
